@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""A simple calculator program with fraction support."""
+"""A simple calculator program with fraction support.claude was here
+let's see if this goes away"""
 
 from fractions import Fraction
 
