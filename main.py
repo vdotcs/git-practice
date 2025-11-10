@@ -38,6 +38,23 @@ def parse_number(input_str):
         raise ValueError("Invalid number format")
 
 
+def display_fraction(fraction):
+    """Display a fraction with numerator on top and denominator on bottom."""
+    if isinstance(fraction, Fraction):
+        numerator = str(fraction.numerator)
+        denominator = str(fraction.denominator)
+        width = max(len(numerator), len(denominator))
+
+        # Pad numerator and denominator to same width
+        numerator = numerator.center(width)
+        denominator = denominator.center(width)
+        line = "-" * width
+
+        return f"{numerator}\n{line}\n{denominator}"
+    else:
+        return str(fraction)
+
+
 def calculator():
     """Main calculator function."""
     print("Simple Calculator with Fraction Support")
@@ -66,16 +83,19 @@ def calculator():
 
                 if choice == "1":
                     result = add(num1, num2)
-                    print(f"{num1} + {num2} = {result}")
+                    print(f"\n{num1} + {num2} =\n{display_fraction(result)}")
                 elif choice == "2":
                     result = subtract(num1, num2)
-                    print(f"{num1} - {num2} = {result}")
+                    print(f"\n{num1} - {num2} =\n{display_fraction(result)}")
                 elif choice == "3":
                     result = multiply(num1, num2)
-                    print(f"{num1} * {num2} = {result}")
+                    print(f"\n{num1} * {num2} =\n{display_fraction(result)}")
                 elif choice == "4":
                     result = divide(num1, num2)
-                    print(f"{num1} / {num2} = {result}")
+                    if isinstance(result, str):
+                        print(result)
+                    else:
+                        print(f"\n{num1} / {num2} =\n{display_fraction(result)}")
             except ValueError as e:
                 print(f"Invalid input. {e}")
         else:
